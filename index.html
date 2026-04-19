@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spice Haven - Premium Masala Brand</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#home" class="logo">
+                <i class="fas fa-pepper-hot"></i>
+                <span>Spice Haven</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1>Authentic Indian <span class="highlight">Masalas</span></h1>
+            <p>Handcrafted with love, tradition, and the finest spices from across India</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary">Explore Products</a>
+                <a href="#contact" class="btn btn-secondary">Order Now</a>
+            </div>
+            <div class="hero-features">
+                <div class="feature">
+                    <i class="fas fa-leaf"></i>
+                    <span>100% Natural</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-certificate"></i>
+                    <span>Premium Quality</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-truck"></i>
+                    <span>Fast Delivery</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our <span class="highlight">Products</span></h2>
+                <p>Discover our range of authentic masala blends</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-product="Garam Masala">
+                    <div class="product-image">
+                        <div class="placeholder-img garam">
+                            <i class="fas fa-jar"></i>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Garam Masala</h3>
+                        <p>A warming blend of cardamom, cinnamon, cloves, and more</p>
+                        <div class="product-price">₹299</div>
+                        <button class="btn btn-order" onclick="orderProduct('Garam Masala')">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-product="Turmeric Powder">
+                    <div class="product-image">
+                        <div class="placeholder-img turmeric">
+                            <i class="fas fa-jar"></i>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Turmeric Powder</h3>
+                        <p>Pure organic turmeric with high curcumin content</p>
+                        <div class="product-price">₹199</div>
+                        <button class="btn btn-order" onclick="orderProduct('Turmeric Powder')">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-product="Red Chili Powder">
+                    <div class="product-image">
+                        <div class="placeholder-img chili">
+                            <i class="fas fa-jar"></i>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Red Chili Powder</h3>
+                        <p>Vibrant and spicy, perfect for adding heat to dishes</p>
+                        <div class="product-price">₹249</div>
+                        <button class="btn btn-order" onclick="orderProduct('Red Chili Powder')">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-product="Coriander Powder">
+                    <div class="product-image">
+                        <div class="placeholder-img coriander">
+                            <i class="fas fa-jar"></i>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Coriander Powder</h3>
+                        <p>Aromatic ground coriander seeds for everyday cooking</p>
+                        <div class="product-price">₹179</div>
+                        <button class="btn btn-order" onclick="orderProduct('Coriander Powder')">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-product="Biryani Masala">
+                    <div class="product-image">
+                        <div class="placeholder-img biryani">
+                            <i class="fas fa-jar"></i>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Biryani Masala</h3>
+                        <p>Special blend for aromatic and flavorful biryanis</p>
+                        <div class="product-price">₹349</div>
+                        <button class="btn btn-order" onclick="orderProduct('Biryani Masala')">Order Now</button>
+                    </div>
+                </div>
+                <div class="product-card" data-product="Sambar Masala">
+                    <div class="product-image">
+                        <div class="placeholder-img sambar">
+                            <i class="fas fa-jar"></i>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Sambar Masala</h3>
+                        <p>South Indian special blend for perfect sambar</p>
+                        <div class="product-price">₹229</div>
+                        <button class="btn btn-order" onclick="orderProduct('Sambar Masala')">Order Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About <span class="highlight">Spice Haven</span></h2>
+                    <p class="lead">Bringing the authentic taste of India to your kitchen since 2010</p>
+                    <p>We are a family-owned business passionate about delivering the finest quality masalas. Our journey began in the spice gardens of Kerala, where we learned the art of selecting and blending spices from generations of expertise.</p>
+                    <p>Every product we create is crafted with care, using traditional methods combined with modern quality standards. We source our spices directly from farmers, ensuring freshness and supporting local communities.</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="number">13+</span>
+                            <span class="label">Years Experience</span>
+                        </div>
+                        <div class="stat">
+                            <span class="number">50K+</span>
+                            <span class="label">Happy Customers</span>
+                        </div>
+                        <div class="stat">
+                            <span class="number">25+</span>
+                            <span class="label">Products</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="placeholder-about">
+                        <i class="fas fa-store"></i>
+                        <p>Our Story</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our <span class="highlight">Gallery</span></h2>
+                <p>A glimpse into our world of spices</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-placeholder spice-mix">
+                        <i class="fas fa-mortar-pestle"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder spices">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder packaging">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder cooking">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder market">
+                        <i class="fas fa-store-alt"></i>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder team">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact <span class="highlight">Us</span></h2>
+                <p>Get in touch or place your order</p>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+91 98765 43210</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>hello@spicehaven.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>123 Spice Market Road, Kochi, Kerala 682001</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" id="orderForm">
+                    <h3>Place Your Order / Inquiry</h3>
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="product" name="product">
+                            <option value="">Select Product (Optional)</option>
+                            <option value="Garam Masala">Garam Masala</option>
+                            <option value="Turmeric Powder">Turmeric Powder</option>
+                            <option value="Red Chili Powder">Red Chili Powder</option>
+                            <option value="Coriander Powder">Coriander Powder</option>
+                            <option value="Biryani Masala">Biryani Masala</option>
+                            <option value="Sambar Masala">Sambar Masala</option>
+                            <option value="Custom Order">Custom Order</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" placeholder="Your Message / Order Details" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Submit Order</button>
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#home" class="logo">
+                        <i class="fas fa-pepper-hot"></i>
+                        <span>Spice Haven</span>
+                    </a>
+                    <p>Authentic Indian masalas crafted with love and tradition</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> hello@spicehaven.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Spice Haven. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
