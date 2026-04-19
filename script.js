@@ -238,3 +238,172 @@ window.addEventListener('load', () => {
 console.log('%c🌶️ Welcome to Spice Haven!', 'color: #C41E3A; font-size: 24px; font-weight: bold;');
 console.log('%cAuthentic Indian Masalas - Crafted with Love', 'color: #F4A300; font-size: 14px;');
 console.log('%cContact us: +91 98765 43210 | hello@spicehaven.com', 'color: #8B4513; font-size: 12px;');
+
+// ===== Three.js 3D Scene Setup =====
+let scene, camera, renderer, spiceJar, floatingSpices = [];
+let animationId;
+
+function initThreeJS() {
+    const container = document.getElementById('three-canvas-container');
+    if (!container) return;
+
+    // Scene setup
+    scene = new THREE.Scene();
+    
+    // Camera setup
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 5;
+
+    // Renderer setup
+    renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
+
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+
+    const pointLight1 = new THREE.PointLight(0xffa500, 1, 100);
+    pointLight1.position.set(5, 5, 5);
+    scene.add(pointLight1);
+
+    const pointLight2 = new THREE.PointLight(0xff6347, 0.8, 100);
+    pointLight2.position.set(-5, -5, 5);
+    scene.add(pointLight2);
+
+    // Create rotating spice jar
+    createSpiceJar();
+
+    // Create floating spices
+    createFloatingSpices();
+
+    // Handle window resize
+    window.addEventListener('resize', onWindowResize, false);
+
+    // Start animation
+    animate();
+}
+
+function createSpiceJar() {
+    // Jar body (cylinder)
+    const jarGeometry = new THREE.CylinderGeometry(1, 1, 2.5, 32);
+    const jarMaterial = new THREE.MeshPhongMaterial({
+        color: 0xF4A300,
+        transparent: true,
+        opacity: 0.8,
+        shininess: 100
+    });
+    spiceJar = new THREE.Mesh(jarGeometry, jarMaterial);
+    
+    // Jar lid
+    const lidGeometry = new THREE.CylinderGeometry(1.1, 1.1, 0.3, 32);
+    const lidMaterial = new THREE.MeshPhongMaterial({
+        color: 0x8B4513,
+        shininess: 50
+    });
+    const lid = new THREE.Mesh(lidGeometry, lidMaterial);
+    lid.position.y = 1.4;
+    spiceJar.add(lid);
+
+    // Label on jar
+    const labelGeometry = new THREE.CylinderGeometry(1.02, 1.02, 1.5, 32, 1, true, 0, Math.PI);
+    const labelMaterial = new THREE.MeshPhongMaterial({
+        color: 0xC41E3A,
+        side: THREE.DoubleSide
+    });
+    const label = new THREE.Mesh(labelGeometry, labelMaterial);
+    spiceJar.add(label);
+
+    spiceJar.position.x = -2.5;
+    spiceJar.position.y = 0;
+    scene.add(spiceJar);
+}
+
+function createFloatingSpices() {
+    const spiceColors = [0xC41E3A, 0xF4A300, 0x8B4513, 0xDAA520];
+    const spiceGeometries = [
+        new THREE.SphereGeometry(0.15, 16, 16),
+        new THREE.OctahedronGeometry(0.12),
+        new THREE.TetrahedronGeometry(0.13)
+    ];
+
+    for (let i = 0; i < 15; i++) {
+        const geometry = spiceGeometries[Math.floor(Math.random() * spiceGeometries.length)];
+        const material = new THREE.MeshPhongMaterial({
+            color: spiceColors[Math.floor(Math.random() * spiceColors.length)],
+            shininess: 30
+        });
+        
+        const spice = new THREE.Mesh(geometry, material);
+        
+        // Random position
+        spice.position.x = (Math.random() - 0.5) * 15 + 2;
+        spice.position.y = (Math.random() - 0.5) * 10;
+        spice.position.z = (Math.random() - 0.5) * 5 - 2;
+        
+        // Random rotation speed
+        spice.rotationSpeed = {
+            x: (Math.random() - 0.5) * 0.02,
+            y: (Math.random() - 0.5) * 0.02,
+            z: (Math.random() - 0.5) * 0.02
+        };
+        
+        // Float speed
+        spice.floatSpeed = 0.5 + Math.random() * 0.5;
+        spice.floatOffset = Math.random() * Math.PI * 2;
+        
+        floatingSpices.push(spice);
+        scene.add(spice);
+    }
+}
+
+function onWindowResize() {
+    if (!camera || !renderer) return;
+    
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function animate() {
+    animationId = requestAnimationFrame(animate);
+    
+    const time = Date.now() * 0.001;
+
+    // Rotate spice jar
+    if (spiceJar) {
+        spiceJar.rotation.y += 0.01;
+        spiceJar.rotation.x = Math.sin(time * 0.5) * 0.1;
+    }
+
+    // Animate floating spices
+    floatingSpices.forEach((spice, index) => {
+        spice.rotation.x += spice.rotationSpeed.x;
+        spice.rotation.y += spice.rotationSpeed.y;
+        spice.rotation.z += spice.rotationSpeed.z;
+        
+        // Floating motion
+        spice.position.y += Math.sin(time + spice.floatOffset) * 0.01;
+    });
+
+    renderer.render(scene, camera);
+}
+
+// Initialize Three.js when DOM is loaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initThreeJS);
+} else {
+    initThreeJS();
+}
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', () => {
+    if (animationId) {
+        cancelAnimationFrame(animationId);
+    }
+    if (renderer && renderer.domElement) {
+        renderer.domElement.remove();
+    }
+});
+
